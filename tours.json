@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Raid Mekong",
+    "slug": "raid_mekong",
+    "description": "Un tour qui vous fera decouvrir 3 pays d'Asie du Sud Est en suivant l'un des fleuves les plus mythiques du monde. Une maniere ludique et hors des sentiers battus de decouvrir culture, ethnies et paysages epoustouflants. Le plus prise de tous !",
+    "duration": 21,
+    "mapLink":"https://maps.google.com",
+    "cover":"angkorwat.JPG"
+  },
+  {
+    "title": "Phnom Penh - Bangkok",
+    "slug": "phnom_penh_bangkok",
+    "description": "Ben devine, tete de noeud: tu prends la petite voiture depuis le Cambodge et tu l as ramenes a Bangkok (en Thailande)",
+    "duration": 7
+  },
+  {
+    "title": "Bouda Bleu",
+    "slug": "bouda_bleu",
+    "duration": 14,
+    "description": "Tu visites le bouda qui est bleu etc blah blah blah"
+  },
+  {
+    "title": "Raid BMW 650 GS",
+    "slug": "raid_bmw",
+    "description": "En moto tu te payes un wheeling, puis une bonne gamelle, c'est drole !",
+    "duration": 7
+  }
+]

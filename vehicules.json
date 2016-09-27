@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Trotinette a moteur",
+    "slug": "trottinette_a_moteur",
+    "description": "foo bar blah woot woot super speed, ca va vite !",
+    "image": "voiture_example.jpg"
+  },
+  {
+    "title": "Autre super 4x4",
+    "slug":"super_4x4",
+    "description":"foo bar another descriptino blah , woot woot",
+    "image":"toyota.jpg"
+  },
+  {
+    "title":"BMW",
+    "slug":"bmw",
+    "description":"une moto blah blah blah",
+    "image":"bmw.jpg"
+  }
+]

@@ -1,0 +1,94 @@
+extends ./layout/main
+
+block body
+    include ./partials/header
+    main
+        div#banner-container
+            p#punchline.
+                Plus de #[strong 20 ans] d'experience de #[strong raid] #[strong 4x4] et #[strong moto] en #[strong Asie du Sud Est] pour vous faire decouvrir le meilleur et le plus authentique des pistes et routes de campagne de cette region. Paysages decoiffants, souvent surprenants !
+        section#tours.flex.column
+            h1 Les tours
+            ul.tours-preview-list.flex
+                for tour in tours
+                    li.flex
+                        article.flex.column
+                            header
+                                h2.flex
+                                    a(href='/tours/' + tour.slug,rel='bookmark') #{tour.title}
+                                small tour de #{tour.duration} jours
+                            p.description #{tour.description}
+                            a.center-text(href='/tours/' + tour.slug, rel='bookmark',tabindex=-1) voir details
+            p.center-text
+                Pour un tour #[em a la carte] ? #[a(href='#contacts') contactez] directement Thierry
+        section#cars.flex.column
+            h1 Les Vehicules
+            p.
+                Thierry possede son propre parc de vehicules #[strong tout terrain], rigoureusement #[strong entretenu] et regulierement renouvele. Voyager en #[strong securite] est une priorite. Il connait de la meme facon les meilleurs addresses de la region pour completer sa flotte en cas de besoin.
+            ul(role="tablist")
+                for vehicule in vehicules
+                    li(role='tab',id=vehicule.slug, aria-selected=false, tabindex=-1)
+                        button #{vehicule.title}
+            for vehicule in vehicules
+                article(aria-labelledby=vehicule.slug, role='tabpanel')
+                    h2.visually-hidden #{vehicule.title}
+                    div.flex
+                        div.img
+                            img(src="/assets/img/"+vehicule.image, alt=vehicule.title)
+                        p #{vehicule.description}
+        section#about.flex.column
+            h1 A Propos
+            div.flex
+                div.img
+                    img(src="/assets/img/thierry.jpg", alt='thierry pelletier')
+                div#about-container.flex.column
+                    p.
+                        Moi c'est #[strong THIERRY PELLETIER] alias TITI, un français né à Toulon en France.
+                        Je parcours depuis #[strong 20 ans] les jungles et forêts du nord de la Thaïlande mais aussi en Asie du Sud Est
+                        (Birmanie, Chine, Laos, Cambodge, Vietnam).
+                    p.
+                        Mon but est de faire quelque chose de #[strong différent], poussé par la #[strong passion]. C'est ma façon d'aimer.
+                        J'aime le contact avec les tribus: échanges et amitiés se sont installées au fil des années.
+                    p.
+                        Les pistes rouges vous attendent dans un océan de verdure. Tentez l'aventure, n'attendez plus...
+                        J’organise des circuits d'aventures extrêmes tout en restant dans la #[strong sécurité].
+                    q(cite="https://4x4asie.com#about").
+                        J'organise exclusivement ce que vous ne pouvez pas, ou n'osez pas faire par vous même.
+        section#contacts.flex.column
+            h1 Contact
+            div.contact-container.flex
+                address
+                    | Phrasing Post Office,
+                    br
+                    | B.P 102 50200,
+                    br
+                    | Mueang Chiang Mai
+                    br
+                    | District Province de Chiang Mai
+                    br
+                    | 50200, Thaïlande‎
+                    br
+                    | +66 86 915 5319
+                    br
+                    a(href='mailto:thierry@4x4asie.com') thierry@4x4asie.com
+                nav.social-nav
+                    ul
+                        li
+                            a(href='mailto:thierry@4x4asie.com', tabindex='-1') Email
+                        li
+                            a(href='https://www.facebook.com/SafariRaidAventure', rel='external', tabindex='-1') Facebook
+                        li
+                            a(href='https://www.youtube.com/channel/UCvH6kxA1OHjPBFigYS9XnKg', rel='external',tabindex='-1') Youtube
+            h2 Envoyer un message
+            form(action='/messages', method='post').flex.column
+                input(hidden=true, name='csrf', id='csrf')
+                label.flex.column
+                    span Votre email
+                    input(type='email', required=true, placeholder='hello@example.com',name='email',id='email')
+                label.flex.column
+                    span Votre message (3000 char. max)
+                    textarea(maxlength=3000,name='content',id='content',placeholder="Salut Thierry, j'aimerais en connaitre plus a propos de votre tour Raid Mekong, etc", required=true)
+                button(type='submit').send Envoyer
+    script(src='/assets/script.js')
+
+
+
