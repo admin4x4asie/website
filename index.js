@@ -39,7 +39,7 @@ router.get('/', parseAlert(), function * () {
   this.render('index', {tours, vehicules, csrf: this.csrf, alert});
 });
 
-router.get('/tours/:tour', parseAlert(), function () {
+router.get('/tours/:tour', parseAlert(), function * () {
   const {alert = null} =this.state;
   const {tour} = this.params;
   const [t] = tours.filter(to=>to.slug === tour);
