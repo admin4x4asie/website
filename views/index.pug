@@ -1,12 +1,12 @@
 extends ./layout/main
+include ./partials/icons
 
 block body
-    include ./partials/header
     main
         div#banner-container
             p#punchline.
-                Plus de #[strong 20 ans] d'experience de #[strong raid] #[strong 4x4] et #[strong moto] en #[strong Asie du Sud Est] pour vous faire decouvrir le meilleur et le plus authentique des pistes et routes de campagne de cette region. Paysages decoiffants, souvent surprenants !
-        section#tours.flex.column
+                Plus de #[strong 20 ans] d'expérience de #[strong raid] #[strong 4x4] et #[strong moto] en #[strong Asie du Sud Est] pour vous faire découvrir le meilleur et le plus authentique des pistes et routes de campagne de cette région. Paysages décoiffants, souvent surprenants !
+        section#tours.flex.column.content
             h1 Les tours
             ul.tours-preview-list.flex
                 for tour in tours
@@ -20,22 +20,22 @@ block body
                             a.center-text(href='/tours/' + tour.slug, rel='bookmark',tabindex=-1) voir details
             p.center-text
                 Pour un tour #[em a la carte] ? #[a(href='#contacts') contactez] directement Thierry
-        section#cars.flex.column
+        section#cars.flex.column.content
             h1 Les Vehicules
             p.
-                Thierry possede son propre parc de vehicules #[strong tout terrain], rigoureusement #[strong entretenu] et regulierement renouvele. Voyager en #[strong securite] est une priorite. Il connait de la meme facon les meilleurs addresses de la region pour completer sa flotte en cas de besoin.
+                Thierry possède son propre parc de véhicules #[strong tout terrain], rigoureusement #[strong entretenu] et régulierement renouvelé. Voyager en #[strong sécurite] est une priorité. Il connait de la même facon les meilleurs adresses de la région pour compléter sa flotte en cas de besoin.
             ul(role="tablist")
                 for vehicule in vehicules
                     li(role='tab',id=vehicule.slug, aria-selected=false, tabindex=-1)
                         button #{vehicule.title}
             for vehicule in vehicules
                 article(aria-labelledby=vehicule.slug, role='tabpanel')
-                    h2.visually-hidden #{vehicule.title}
+                    h2.visuallyhidden #{vehicule.title}
                     div.flex
                         div.img
-                            img(src="/assets/img/"+vehicule.image, alt=vehicule.title)
+                            img(src="/assets/img/" + vehicule.image, alt=vehicule.title)
                         p #{vehicule.description}
-        section#about.flex.column
+        section#about.flex.column.content
             h1 A Propos
             div.flex
                 div.img
@@ -53,7 +53,7 @@ block body
                         J’organise des circuits d'aventures extrêmes tout en restant dans la #[strong sécurité].
                     q(cite="https://4x4asie.com#about").
                         J'organise exclusivement ce que vous ne pouvez pas, ou n'osez pas faire par vous même.
-        section#contacts.flex.column
+        section#contacts.flex.column.content
             h1 Contact
             div.contact-container.flex
                 address
@@ -73,22 +73,26 @@ block body
                 nav.social-nav
                     ul
                         li
-                            a(href='mailto:thierry@4x4asie.com', tabindex='-1') Email
+                            a(href='mailto:thierry@4x4asie.com', tabindex='-1')
+                                span.visuallyhidden Email
+                                +mail
                         li
-                            a(href='https://www.facebook.com/SafariRaidAventure', rel='external', tabindex='-1') Facebook
+                            a(href='https://www.facebook.com/SafariRaidAventure', rel='external', tabindex='-1')
+                                span.visuallyhidden Facebook
+                                +facebook
                         li
-                            a(href='https://www.youtube.com/channel/UCvH6kxA1OHjPBFigYS9XnKg', rel='external',tabindex='-1') Youtube
+                            a(href='https://www.youtube.com/channel/UCvH6kxA1OHjPBFigYS9XnKg', rel='external',tabindex='-1')
+                                span.visuallyhidden Youtube
+                                +youtube
             h2 Envoyer un message
-            form(action='/messages', method='post').flex.column
-                input(hidden=true, name='csrf', id='csrf')
+            form(method='post').flex.column
+                input(hidden=true, name='_csrf', value=csrf)
                 label.flex.column
                     span Votre email
-                    input(type='email', required=true, placeholder='hello@example.com',name='email',id='email')
+                    input(type='email',autocomplete='email', required=true, placeholder='hello@example.com',name='email',id='email')
                 label.flex.column
                     span Votre message (3000 char. max)
                     textarea(maxlength=3000,name='content',id='content',placeholder="Salut Thierry, j'aimerais en connaitre plus a propos de votre tour Raid Mekong, etc", required=true)
                 button(type='submit').send Envoyer
-    script(src='/assets/script.js')
-
 
 

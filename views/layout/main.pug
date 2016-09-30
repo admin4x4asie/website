@@ -1,10 +1,18 @@
 html(lang='fr')
     head
-    title Safari Asie - tours 4x4
+    title #{title || 'Safari Raid Aventure - tours 4x4'}
     meta(charset='utf8')
     meta(name='viewport',content='width=device-width')
+    meta(name='description',content='safari raid aventure site web, organisation de tours/raids 4x4 et vehicules tout terrain en Asie du Sud Est')
+    meta(name='keywords',content='4x4, aventure, raid, asie, tout terrain')
+    meta(name='robots', content='index, follow')
     link(rel='stylesheet',href='/assets/theme.css')
     body.flex.column
+        include ../partials/header
+        if alert
+            div(role='alert', class=alert.level || 'success')
+                p #{alert.message}
         block body
-    footer.flex
-        p copyright © 2016 Safari Raid Adventure - Tous droits reserves
+        footer.flex
+            p copyright © 2016 Safari Raid Adventure - Tous droits reserves
+        script(defer, src='/assets/script.js')

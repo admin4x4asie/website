@@ -5,20 +5,33 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "build:css": "cleancss ./public/src/theme.css -o ./public/dist/theme.css",
+    "build:js": "uglifyjs ./public/src/script.js -o ./public/dist/script.js -m",
+    "build:images": "cp -R ./public/src/img ./public/dist/",
+    "clean": "rm -r ./public/dist && mkdir -p ./public/dist/img",
+    "build": "npm run clean && npm run build:css && npm run build:js && npm run build:images"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.2.0",
-    "koa-csrf": "^3.0.3",
+    "koa-csrf": "^2.5.0",
+    "koa-favicon": "^1.2.1",
+    "koa-generic-session": "^1.11.3",
     "koa-gzip": "^0.1.0",
+    "koa-json-schema": "^1.0.0",
     "koa-mount": "^1.3.0",
     "koa-pug": "^3.0.0-0",
+    "koa-redis": "^2.1.2",
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
-    "postcss-cli": "^2.6.0",
-    "postcss-cssnext": "^2.8.0"
+    "nodemailer": "^2.6.4",
+    "nodemailer-html-to-text": "^2.1.0"
+  },
+  "devDependencies": {
+    "clean-css": "^3.4.20",
+    "uglify-js": "^2.7.3"
   }
 }

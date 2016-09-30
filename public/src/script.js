@@ -1,5 +1,4 @@
-(function (global, undefined) {
-
+(function () {
   function compose (behaviour, properties) {
     var props = properties || [];
     return function factory () {
@@ -35,17 +34,20 @@
     }
   }
 
+  var Itemable = {
+    addItem: function (item) {
+      this.items.push(item);
+      return this;
+    }
+  };
+
   var AccordionItem = {
     toggle: function () {
       this.accordion.toggleItem(this);
     }
   };
 
-  var Accordion = {
-    addItem: function (item) {
-      this.items.push(item);
-      return this;
-    },
+  var Accordion = Object.assign({
     toggleItem: function (item) {
       if (this.items.indexOf(item) !== -1) {
         this.items.forEach(function (i) {
@@ -57,9 +59,70 @@
         });
       }
     }
+  }, Itemable);
+
+  var Gallery = Object.assign({
+    selectItem: function (index) {
+      if (this.items[index]) {
+        this.selectedIndex = index;
+      }
+      return this;
+    },
+    selectNext: function () {
+      return this.selectItem(this.selectedIndex + 1)
+    },
+    selectPrevious: function () {
+      return this.selectItem(this.selectedIndex - 1);
+    },
+    isItemSelected: function (item) {
+      return item === this.items[this.selectedIndex];
+    },
+    isLast: function () {
+      return this.selectedIndex >= this.items.length - 1;
+    },
+    isFirst: function () {
+      return this.selectedIndex === 0;
+    }
+  }, Itemable);
+
+  var GalleryItem = {
+    hide: function () {
+      this.el.style.display = 'none';
+      return this;
+    },
+    show: function () {
+      this.el.style.display = 'inline-block';
+      return this;
+    }
   };
 
   var accordionItemFactory = compose(AccordionItem, ['isOpen']);
+  var galleryFactory = compose(Gallery, ['selectedIndex']);
+
+  function gallery () {
+    var instance = galleryFactory();
+    Object.defineProperty(instance, 'items', {value: []});
+    return instance;
+  }
+
+  function galleryItem (el, gallery) {
+    var instance = Object.create(GalleryItem, {
+      gallery: {value: gallery},
+      el: {value: el}
+    });
+
+    gallery.addItem(instance);
+
+    gallery.on('selectedIndex', function () {
+      if (gallery.isItemSelected(instance)) {
+        instance.show();
+      } else {
+        instance.hide();
+      }
+    });
+    return instance;
+  }
+
 
   function accordion (el) {
     var items = [];
@@ -70,11 +133,8 @@
   }
 
   function tabAccordion (accordion, toggleEl, tabEl) {
-    var id = toggleEl.id;
-
     var isOpen = toggleEl.parentNode.firstChild === toggleEl;
-
-    const instance = accordionItemFactory();
+    var instance = accordionItemFactory();
 
     Object.defineProperty(instance, 'accordion', {value: accordion});
     Object.defineProperty(instance, 'toggleEl', {value: toggleEl});
@@ -90,11 +150,12 @@
     return instance;
   }
 
+
   var acc = accordion();
   var toggles = [].slice.call(document.querySelectorAll("li[role=tab]"));
 
   var headers = toggles.map(function (toggleButton) {
-    var tab = document.querySelector(`[aria-labelledby=${toggleButton.id}]`);
+    var tab = document.querySelector('[aria-labelledby='+toggleButton.id+']');
     return tabAccordion(acc, toggleButton, tab);
   });
 
@@ -103,4 +164,25 @@
     item.toggleEl.addEventListener('click', item.toggle.bind(item));
   });
 
+  var g = gallery();
+  var galleryItems = [].slice.call(document.querySelectorAll('.gallery-items-list li'));
+  galleryItems.forEach(function (gi) {
+    galleryItem(gi, g);
+  });
+
+  [].slice.call(document.querySelectorAll('.handle > button')).forEach(function (h, index) {
+    if (index === 0) {
+      h.addEventListener('click', g.selectPrevious.bind(g));
+      g.on('selectedIndex', function () {
+        h.disabled = g.isFirst();
+      });
+    } else {
+      h.addEventListener('click', g.selectNext.bind(g));
+      g.on('selectedIndex', function () {
+        h.disabled = g.isLast();
+      });
+    }
+  });
+
+  g.selectItem(0);
 })(window);

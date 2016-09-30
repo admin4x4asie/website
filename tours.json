@@ -2,27 +2,179 @@
   {
     "title": "Raid Mekong",
     "slug": "raid_mekong",
-    "description": "Un tour qui vous fera decouvrir 3 pays d'Asie du Sud Est en suivant l'un des fleuves les plus mythiques du monde. Une maniere ludique et hors des sentiers battus de decouvrir culture, ethnies et paysages epoustouflants. Le plus prise de tous !",
+    "description": "Un tour qui vous fera decouvrir 3 pays d'Asie du Sud Est en suivant l'un des fleuves les plus mythiques du monde. Une manière ludique et hors des sentiers battus de découvrir culture, ethnies et paysages époustouflants. Le plus prisé de tous !",
     "duration": 21,
-    "mapLink":"https://maps.google.com",
-    "cover":"angkorwat.JPG"
+    "map": "mekong.jpg",
+    "cover": "angkorwat.jpg",
+    "details": [
+      {
+        "country": "Cambodge",
+        "distance": 0,
+        "location": "Angkor Wat",
+        "comment": "Visite archéologique"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 202,
+        "location": "Phra Vihar",
+        "comment": "Pistes"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 213,
+        "location": "Stung Trenk",
+        "comment": "Pistes"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 161,
+        "location": "Kratie",
+        "comment": "Routes"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 0,
+        "location": "Kratie",
+        "comment": "Repos sur l'île du Mekong"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 209,
+        "location": "Semonorom",
+        "comment": "Routes de campagne"
+      },
+      {
+        "country": "Cambodge",
+        "distance": 262,
+        "location": "Mondolkiri",
+        "comment": "Pistes"
+      },
+      {
+        "country": "Cambodge-Laos",
+        "distance": 155,
+        "location": "4000 iles",
+        "comment": "Un peu de piste"
+      },
+      {
+        "country": "Laos",
+        "distance": 175,
+        "location": "Paksé Champasak",
+        "comment": "Visite du temple"
+      },
+      {
+        "country": "Laos",
+        "distance": 178,
+        "location": "Attapeu",
+        "comment": "Pistes possibles"
+      },
+      {
+        "country": "Laos",
+        "distance": 178,
+        "location": "Salavane",
+        "comment": "Pistes possibles"
+      },
+      {
+        "country": "Laos",
+        "distance": 391,
+        "location": "Takhek",
+        "comment": "Route"
+      },
+      {
+        "country": "Laos",
+        "distance": 214,
+        "location": "ViengThong",
+        "comment": "Pistes possibles"
+      },
+      {
+        "country": "Laos",
+        "distance": 232,
+        "location": "Phon Savan",
+        "comment": "Pistes, visite site archéologique"
+      },
+      {
+        "country": "Laos",
+        "distance": 195,
+        "location": "ViengThong",
+        "comment": "Routes"
+      },
+      {
+        "country": "Laos",
+        "distance": 227,
+        "location": "Luang Prabang",
+        "comment": "Pistes"
+      },
+      {
+        "country": "Laos",
+        "distance": 0,
+        "location": "Luang Prabang",
+        "comment": "Visite de la ville, classée au patrimoine de l'UNESCO"
+      },
+      {
+        "country": "Laos",
+        "distance": 219,
+        "location": "Pakbeng",
+        "comment": "Pistes"
+      },
+      {
+        "country": "Laos",
+        "distance": 143,
+        "location": "Houay Say",
+        "comment": "Pistes aux abords de la frontière"
+      },
+      {
+        "country": "Thailande",
+        "distance": 101,
+        "location": "Mae Sae",
+        "comment": "Routes"
+      },
+      {
+        "country": "Thailande-Birmanie",
+        "distance": 250,
+        "location": "Chiang Mai",
+        "comment": "Arrivée !"
+      }
+    ],
+    "flyer":"raid_mekong.pdf",
+    "gallery": [
+      {
+        "title": "Super photo",
+        "image": "angkorwat.jpg",
+        "description": "On passait la porte de ta phrom, je me rappelle, c'etait trop bien"
+      },
+      {
+        "title": "La grosse voiture",
+        "image": "voiture_example.jpg",
+        "description": "C'est vraiment une grosse voiture"
+      },
+      {
+        "title": "Super photo",
+        "image": "bmw.jpg",
+        "description": "On passait la porte de ta phrom, je me rappelle, c'etait trop bien"
+      }
+    ]
   },
   {
     "title": "Phnom Penh - Bangkok",
     "slug": "phnom_penh_bangkok",
     "description": "Ben devine, tete de noeud: tu prends la petite voiture depuis le Cambodge et tu l as ramenes a Bangkok (en Thailande)",
-    "duration": 7
+    "duration": 7,
+    "details": [],
+    "gallery":[]
   },
   {
     "title": "Bouda Bleu",
     "slug": "bouda_bleu",
     "duration": 14,
-    "description": "Tu visites le bouda qui est bleu etc blah blah blah"
+    "description": "Tu visites le bouda qui est bleu etc blah blah blah",
+    "details": [],
+    "gallery":[]
   },
   {
     "title": "Raid BMW 650 GS",
     "slug": "raid_bmw",
     "description": "En moto tu te payes un wheeling, puis une bonne gamelle, c'est drole !",
-    "duration": 7
+    "duration": 7,
+    "details": [],
+    "gallery":[]
   }
 ]

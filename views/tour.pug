@@ -1,17 +1,87 @@
 extends ./layout/main
+include ./partials/icons
 
 block body
-    include ./partials/header
     main
-        article.tour-detail
-            header
-                h1 Raid Mekong
-                small tour de 21 jours
-            p whatever description
-            section
-                h2 Details
-                p foo bar
-            section
-                h2 gallerie
-            section
-                h2#devis Demande de devis
+        article.tour-details
+            header.flex.column
+                h1 #{tour.title}
+                small.center-text #{'tour de ' + tour.duration + ' jours'}
+            div#introduction.content.flex.column
+                div.flex
+                    div.flex.column
+                        p #{tour.description}
+                        aside
+                            a(href='#devis') Faire un devis
+                            a(href='/assets/flyer/'+tour.flyer, download, title=tour.title) Télecharger la plaquette
+                    div.img
+                        img(src='/assets/img/' + tour.cover,alt='couverture du tour ' + tour.title)
+            section#details.content.flex.column
+                h2 Details (etape par etape)
+                div.flex
+                    div.container
+                        table
+                            thead
+                                tr
+                                    th jour
+                                    th Etape
+                                    th distance
+                                    th activité
+                            tbody
+                                for detail, index in tour.details
+                                    tr
+                                        td #{(+index + 1)}
+                                        td #{detail.location}
+                                        td #{detail.distance + ' km'}
+                                        td #{detail.comment}
+                    div.container
+                        div.img
+                            img(src='/assets/img/maps/'+tour.map, alt='carte du tour'+tour.title)
+            section.content.flex.column#gallery
+                h2 galerie
+                div.flex
+                    div.handle
+                        button
+                            span.visuallyhidden precedent
+                            +previous
+                    ul.gallery-items-list
+                        for image in tour.gallery
+                            li
+                                article.flex.column.gallery-item
+                                    h3 #{image.title}
+                                    div.img
+                                        img(src='/assets/img/'+image.image, alt=image.title)
+                                    p #{image.description}
+                    div.handle
+                        button
+                            span.visuallyhidden suivant
+                            +next
+
+            section#devis.content.flex.column
+                h2 Demande de devis
+                form(method='post').flex.column
+                    input(hidden=true, name='_csrf', value=csrf)
+                    input(hidden=true, name='tour', value=tour.title)
+                    label.flex.column
+                        span Votre nom
+                        input(required=true,name='name',autocomplete='name',placeholder='Mr Rober Dupont')
+                    label.flex.column
+                        span Votre email
+                        input(type='email',autocomplete='email', required=true, placeholder='hello@example.com',name='email',id='email')
+                    label.flex.column
+                        span Date esperée
+                        input(type='month',name='date',required)
+                    label.flex.column
+                        span Nombre de participants
+                        input(type='number',name='participants',required, placeholder=4)
+                    label.flex.column
+                        span
+                            span Votre numéro de telephone
+                            small -optionel-
+                        input(type='tel',autocomplete='tel',placeholder='0612345678',name='phone')
+                    label.flex.column
+                        span
+                            span Votre message (3000 char. max)
+                            small -optionel-
+                        textarea(maxlength=3000,name='content',id='content',placeholder="Salut Thierry, penses-tu que nous pourrions organiser un appel un de ces jours ?")
+                    button(type='submit').send Envoyer

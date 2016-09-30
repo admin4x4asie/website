@@ -1,0 +1,24 @@
+version: '2'
+services:
+  haproxy:
+    image: dockercloud/haproxy:latest
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - app
+    environment:
+      - DOCKER_TLS_VERIFY
+      - DOCKER_HOST
+      - DOCKER_CERT_PATH
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  app:
+    image: sra:latest
+    environment:
+      - ADMIN_EMAIL=foo@bar.com
+      - ADMIN_PASS=1234
+    links:
+      - sessions
+  sessions:
+    image: redis:latest

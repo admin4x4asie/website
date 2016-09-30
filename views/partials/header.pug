@@ -1,3 +1,5 @@
+include ./icons
+
 header(role='banner').flex
     nav
         ul.flex
@@ -5,10 +7,18 @@ header(role='banner').flex
                 a(href='/')
                     img(src='/assets/img/logo.jpg', alt='safari logo')
             li.navigation-item.flex
-                a(href='#tours') Les tours
+                a(href='/#tours').flex.column
+                    +icon-map
+                    span Les tours
             li.navigation-item.flex
-                a(href='#cars') Les vehicules
+                a(href='/#cars').flex.column
+                    +icon-truck
+                    span Les vehicules
             li.navigation-item.flex
-                a(href='#about') A propos
+                a(href='/#about').flex.column
+                    +icon-about
+                    span A propos
             li.navigation-item.flex
-                a(href='#contacts') Contact
+                a(href='/#contacts').flex.column
+                    +icon-bubble
+                    span Contact
