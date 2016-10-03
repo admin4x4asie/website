@@ -156,3 +156,5 @@ function emailFactory (data = {}) {
     html: data.html
   }
 }
+
+//end
