@@ -13,6 +13,8 @@ const nodemailer = require('nodemailer');
 const htmlToText = require('nodemailer-html-to-text').htmlToText;
 const favicon = require('koa-favicon');
 const redis = require('koa-redis');
+const conditional = require('koa-conditional-get');
+const etag = require('koa-etag');
 
 const admin = encodeURIComponent(process.env.ADMIN_EMAIL);
 const pass = process.env.ADMIN_PASS;
@@ -25,7 +27,9 @@ const vehicules = require('./vehicules.json');
 
 const app = koa()
   .use(compress())
-  .use(favicon(__dirname + '/public/dist/img/logo.jpg'));
+  .use(favicon(__dirname + '/public/dist/img/logo.jpg'))
+  .use(conditional())
+  .use(etag());
 
 const fs = fileServer('./public/dist');
 
