@@ -29,7 +29,7 @@ const app = koa()
   .use(function * (next) {
       const start = Date.now();
       try {
-        yield next;
+        yield *next;
         this.set('Cache-Control', 'max-age=31536000');
       } catch (e) {
         const status = e.status || 500;
